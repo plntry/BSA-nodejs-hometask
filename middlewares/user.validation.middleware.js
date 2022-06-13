@@ -3,6 +3,7 @@ const { use } = require("chai");
 const { last } = require("lodash");
 
 const createUserValid = (req, res, next) => {
+    // DONE
     // TODO: Implement validatior for user entity during creation
 
     try {
@@ -24,19 +25,18 @@ const createUserValid = (req, res, next) => {
 
         const emailTemp = /^\w+([.-]?\w+)*@gmail.com/;
         const phoneNumberTemp = /\+380[0-9]{9}$/;
-        
-        if (!email.match(emailTemplate)) {
-            throw new Error(errorMsg);
-        }
-    
-        if (!phoneNumber.match(phoneNumberTemplate)) {
-            throw new Error(errorMsg);
-        }
-    
+
         if (password.length < 3) {
-            throw new Error(errorMsg);
+            throw new Error('Invalid input');
         }
 
+        if (!email.match(emailTemp)) {
+            throw new Error('Invalid input');
+        }
+    
+        if (!phoneNumber.match(phoneNumberTemp)) {
+            throw new Error('Invalid input');
+        }
     } catch (error) {
         res.notFound = true;
         res.message = error.message;
