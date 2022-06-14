@@ -28,7 +28,7 @@ class UserService {
             throw new Error('Cannot update. User not found.');
         }
 
-        if (this.search({ email: ChangedData?.email }) || this.search({ phoneNumber: ChangedData?.phoneNumber })) {
+        if (this.search({ email: ChangedData.email }) || this.search({ phoneNumber: ChangedData.phoneNumber })) {
             throw new Error('Cannot update data. There is user with such email / phone number.');
         }
 
