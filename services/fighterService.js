@@ -4,8 +4,8 @@ class FighterService {
     // DONE
     // TODO: Implement methods to work with fighters
 
-    showFighterList(fighters) {
-        const items = FighterRepository.getAll(fighters);
+    showFighterList() {
+        const items = FighterRepository.getAll();
         if(items.length === 0) {
             return null;
         }
