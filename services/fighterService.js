@@ -20,6 +20,7 @@ class FighterService {
         }
 
         const newUser = FighterRepository.create(input);
+        
         return newUser;
     }
 
@@ -42,11 +43,11 @@ class FighterService {
     }
 
     deleteFighter(id) {
-        if (!this.search({ id })) {
-            throw new Error('Cannot delete. Fighter not found.');
+        const deleted = FighterRepository.delete(id);
+        if(deleted.length === 0) {
+            return null;
         }
 
-        const deleted = FighterRepository.delete(id);
         return deleted;
     }
 

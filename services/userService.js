@@ -42,12 +42,12 @@ class UserService {
     }
 
     deleteUser(id) {
-        const deletion = UserRepository.delete(id);
-        if(deletion.length === 0) {
+        const deleted = UserRepository.delete(id);
+        if(deleted.length === 0) {
             return null;
         }
 
-        return deletion;
+        return deleted;
     }
 
     search(search) {

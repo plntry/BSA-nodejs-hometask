@@ -10,7 +10,7 @@ const router = Router();
 
 router.get('/', (req, res, next) => {
     try {
-      const fighters = FighterService.showList('listFighters');
+      const fighters = FighterService.showList();
       res.data = fighters;
     } catch (err) {
       res.notFound = true;
@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
 
   responseMiddleware
 );
-
+//!
 router.get('/:id', (req, res, next) => {
     try {
       const findFighter = FighterService.search({ id: req.params.id });
@@ -37,7 +37,7 @@ router.get('/:id', (req, res, next) => {
 
   responseMiddleware
 );
-
+//!
 router.post('/', createFighterValid, (req, res, next) => {
       if (!res.badRequest) {
         try {
@@ -54,7 +54,7 @@ router.post('/', createFighterValid, (req, res, next) => {
 
     responseMiddleware
   );
-  
+
   router.put('/:id', updateFighterValid, (req, res, next) => {
       if (!res.badRequest) {
         try {
@@ -71,15 +71,16 @@ router.post('/', createFighterValid, (req, res, next) => {
 
     responseMiddleware
   );
-  
+
   router.delete('/:id', (req, res, next) => {
       try {
-        const fighter = FighterService.deleteFighter(req.params.id);
-        res.data = fighter;
+        const fighterToDelete = FighterService.deleteFighter(req.params.id);
+        res.data = fighterToDelete;
       } catch (err) {
         res.notFound = true;
         res.message = err.message;
       }
+      req.body = fighterToDelete;
 
       next();
     },
