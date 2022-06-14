@@ -42,12 +42,12 @@ class UserService {
     }
 
     deleteUser(id) {
-        if (!this.search({ id })) {
-            throw new Error('Cannot delete. User not found.');
+        const deletion = UserRepository.delete(id);
+        if(deletion.length === 0) {
+            return null;
         }
 
-        const deleted = UserRepository.delete(id);
-        return deleted;
+        return deletion;
     }
 
     search(search) {
