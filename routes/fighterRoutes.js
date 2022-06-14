@@ -5,6 +5,7 @@ const { createFighterValid, updateFighterValid } = require('../middlewares/fight
 
 const router = Router();
 
+// DONE
 // TODO: Implement route controllers for fighter
 
 router.get('/', (req, res, next) => {
